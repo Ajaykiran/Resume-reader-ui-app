@@ -1,0 +1,28 @@
+.heading {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.file {
+  margin-bottom: 1rem;
+}
+
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.file-preview {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+

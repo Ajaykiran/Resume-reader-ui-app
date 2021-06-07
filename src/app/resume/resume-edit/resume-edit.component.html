@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveResume()" *ngIf="!isLoading">
+
+    <div class="heading">Resume Edit Form</div>
+
+    <mat-form-field>
+      <input matInput type="text" formControlName="name" placeholder="name">
+      <mat-error *ngIf="form.get('name').invalid">Please enter a resume name.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="email" formControlName="email" placeholder="email">
+      <mat-error *ngIf="form.get('email').invalid">Please enter a resume email.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" formControlName="phoneNumber" placeholder="phoneNumber">
+      <mat-error *ngIf="form.get('phoneNumber').invalid">Please enter a resume phoneNumber.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput rows="4" formControlName="skills" placeholder="skills"></textarea>
+      <mat-error *ngIf="form.get('skills').invalid">Please enter a resume skills.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" formControlName="college" placeholder="college">
+      <mat-error *ngIf="form.get('college').invalid">Please enter a resume college.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" formControlName="currentEmployer" placeholder="currentEmployer">
+      <mat-error *ngIf="form.get('currentEmployer').invalid">Please enter a resume currentEmployer.</mat-error>
+    </mat-form-field>
+
+    <div class="file">
+      <button mat-stroked-button type="button" (click)="filePicker.click()">File Upload</button>
+      <input type="file" #filePicker (change)="onFilePicked($event)">
+    </div>
+    <div class="file-preview" *ngIf="filePreview !== '' && filePreview && form.get('file').valid">
+      <input matInput type="text" formControlName="filePreview">
+    </div>
+
+    <button mat-raised-button color="accent" type="submit">Save Resume</button>
+  </form>
+</mat-card>

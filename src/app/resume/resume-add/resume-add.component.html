@@ -1,0 +1,13 @@
+<mat-card>
+    <form [formGroup]="form" (submit)="onSaveResume()" *ngIf="!isLoading">
+        <div class="file">
+            <button mat-stroked-button type="button" (click)="filePicker.click()">File Upload</button>
+            <input type="file" #filePicker (change)="onFilePicked($event)">
+        </div>
+        <div class="file-preview" *ngIf="filePreview !== '' && filePreview && form.get('file').valid">
+            <input matInput type="text" formControlName="filePreview">
+        </div>
+
+        <button mat-raised-button color="accent" type="submit">Save Resume</button>
+    </form>
+</mat-card>

@@ -1,0 +1,36 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<mat-accordion multi="true" *ngIf="(resumes.length > 0 && !isLoading)">
+
+  <mat-expansion-panel *ngFor="let resume of resumes">
+
+    <mat-expansion-panel-header>
+      <strong>{{ resume.name }}</strong>
+    </mat-expansion-panel-header>
+
+    <p><strong>Email:&nbsp;</strong> {{ resume.email }}</p>
+
+    <p><strong>Contact Number:&nbsp; </strong>{{ resume.phoneNumber }}</p>
+
+    <p><strong>Skills:&nbsp; </strong>{{ resume.skills }}</p>
+
+    <p><strong>College:&nbsp; </strong>{{ resume.college }}</p>
+
+    <p><strong>Current Employer:&nbsp; </strong>{{ resume.currentEmployer }}</p>
+
+    <div class="file-preview">
+      <input matInput type="text" formControlName="resume.filePath">
+    </div>
+
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/edit', resume.id]">EDIT</a>
+      <button mat-button color="accent" (click)="onDownload(resume.id)">DOWNLOAD</button>
+      <button mat-button color="warn" (click)="window.open(onDelete(resume.id)) ">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-paginator [length]="totalResumes" [pageSize]="resumesPerPage" [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangedPage($event)" *ngIf="resumes.length > 0"></mat-paginator>
+
+<p class="info-text mat-body-1" *ngIf="resumes.length <= 0 && !isLoading">No resumes added yet!</p>
